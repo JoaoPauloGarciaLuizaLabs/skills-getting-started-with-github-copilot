@@ -20,11 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // Cria a lista de participantes como uma lista ordenada
+        let participantsHTML = `
+          <div class="participants-section">
+            <p style="margin-bottom: 6px; font-weight: bold; color: #3949ab;">Participantes:</p>
+            <ul style="margin-left: 18px; margin-bottom: 0;">
+              ${details.participants.map(email => `<li style="margin-bottom: 2px;">${email}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          ${participantsHTML}
         `;
 
         activitiesList.appendChild(activityCard);
